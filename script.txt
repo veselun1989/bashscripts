@@ -1,0 +1,54 @@
+echo @off
+
+rem Written by Volodymyr Bilous
+
+
+
+set /P LNBIPADD="Please enter lnb ip address: "
+set "file1=%windir%\SysWOW64\Macromed\Flash\MMS.CFG"
+set "file2=%windir%\system32\Macromed\Flash\MMS.CFG" 
+echo %LNBIPADD%
+echo This computer architecture is : %processor_architecture%
+
+if /i "%processor_architecture%"=="AMD64" (
+	echo EOLUninstallDisable=1 > %file1%  
+	echo DisableAnalytics=1 >> %file1%
+	echo SilentAutoUpdateEnable=0 >> %file1%
+	echo EnableAllowList=1 >> %file1%
+	echo AutoUpdateDisable=1 >> %file1%
+	echo ErrorReportingEnable=1 >> %file1%
+	echo AllowListUrlPattern=http://%LNBIPADD%:8080/ >> %file1%
+	pause
+	goto:eof
+
+else (
+echo EOLUninstallDisable=1 > %file2%"  
+echo DisableAnalytics=1 >> %file2%"
+echo SilentAutoUpdateEnable=0 >> %file2%"
+echo EnableAllowList=1 >> %file2%"
+echo AutoUpdateDisable=1 >> %file2%"
+echo ErrorReportingEnable=1 >> %file2%"
+echo AllowListUrlPattern=http://%LNBIPADD%:8080/ >> %file2%"
+pause
+goto:eof
+	)
+)
+
+
+
+******************************************************
+:start
+set /a ii+=1
+if /I %continue%==y if %continue%==yes (
+echo trueeeee 
+echo %ii% line^(s^) added!
+pause 
+
+ELSE 
+echo False
+echo %ii% line^(s^) added!
+pause )
+IF %ERRORLEVEL% NEQ 0 (
+  echo %ERRORLEVEL%
+pause
+)

@@ -1,0 +1,109 @@
+set /P LNBIPADD="please enter lnb ip address: "
+echo %LNBIPADD%
+pause
+set configfile01=echo EOLUninstallDisable=1 ^& echo DisableAnalytics=1 ^& echo SilentAutoUpdateEnable=0 ^& echo EnableAllowList=1 ^& echo AutoUpdateDisable=1 ^& echo ErrorReportingEnable=1 ^& echo AllowListUrlPattern=http://%LNBIPADD%:8080/
+pause
+if /i "%processor_architecture%"=="AMD64" (echo %configfile01% >> %userprofile%\desktop\true.txt) else (echo %configfile01% >> %userprofile%\desktop\false.txt)
+
+pause
+
+
+
+
+
+********************************************************
+echo @off
+set /P LNBIPADD="Please enter lnb ip address: "
+set "file1=%windir%\SysWOW64\Macromed\Flash\1.txt"
+set "file2="%programfiles%\Macromed\Flash\2.txt" 
+echo %LNBIPADD%
+echo This computer architecture is : %processor_architecture%
+
+if /i "%processor_architecture%"=="AMD64" (
+	echo EOLUninstallDisable=1 > %file1%  
+	echo DisableAnalytics=1 >> %file1%
+	echo SilentAutoUpdateEnable=0 >> %file1%
+	echo EnableAllowList=1 >> %file1%
+	echo AutoUpdateDisable=1 >> %file1%
+	echo ErrorReportingEnable=1 >> %file1%
+	echo AllowListUrlPattern=http://%LNBIPADD%:8080/ >> %file1%
+	pause
+	goto:eof
+
+else (
+echo EOLUninstallDisable=1 > %file2%"  
+echo DisableAnalytics=1 >> %file2%"
+echo SilentAutoUpdateEnable=0 >> %file2%"
+echo EnableAllowList=1 >> %file2%"
+echo AutoUpdateDisable=1 >> %file2%"
+echo ErrorReportingEnable=1 >> %file2%"
+echo AllowListUrlPattern=http://%LNBIPADD%:8080/ >> %file2%"
+pause
+goto:eof
+	)
+)
+
+
+
+****************************************************
+echo off
+setlocal enabledelayedexpansion
+set /P numlim="how many lines? "
+
+for /L %%i in (1,1,%numlim%) do (
+set /P LNBIPADD="Please enter lnb ip address: "
+echo !LNBIPADD!
+
+) 
+
+
+echo loop ended
+pause
+endlocal
+
+
+****************************************************
+
+@echo off
+setlocal enabledelayedexpansion
+												
+set "file1=%windir%\SysWOW64\Macromed\Flash\1.txt"
+set "file2=%windir%\system32\Macromed\Flash\2.txt" 
+
+	
+	echo EOLUninstallDisable=1 >> %file1%
+	echo EOLUninstallDisable=1 >> %file2%  
+						
+	echo DisableAnalytics=1 >> %file1%
+	echo DisableAnalytics=1 >> %file2%
+					
+	echo SilentAutoUpdateEnable=0 >> %file1%
+	echo SilentAutoUpdateEnable=0 >> %file2%
+						
+	echo EnableAllowList=1 >> %file1%
+	echo EnableAllowList=1 >> %file2%
+						
+	echo AutoUpdateDisable=1 >> %file1%
+	echo AutoUpdateDisable=1 >> %file2%
+						
+	echo ErrorReportingEnable=1 >> %file1%
+	echo ErrorReportingEnable=1 >> %file2%
+
+set /P numlim="how many lines do you want ot add? "
+
+for /L %%i in (1,1,%numlim%) do (
+set /P LNBIPADD="Please enter lnb ip address: "
+echo LNB %%i IP address is:  !LNBIPADD!
+echo AllowListUrlPattern=http://!LNBIPADD!:8080/ >> %file1%
+echo AllowListUrlPattern=http://!LNBIPADD!:8080/ >> %file2%
+) 
+
+echo.
+echo.
+echo.
+echo Configuration is done!
+echo To change configuration manually please edit 
+echo %file1%
+echo %file2%
+pause
+endlocal
